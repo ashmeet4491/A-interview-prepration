@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string str="Welcome to gfg";
+    int i;
+    int start=0;
+    for(i=0;i<=str.length();++i)
+    {
+        if(str[i]==' ' || str[i]=='\0')
+        {
+            reverse(str.begin()+start,str.begin()+i);
+            start=i+1;
+            
+        }
+        
+        
+    }
+    reverse(str.begin()+0,str.begin()+str.length());
+    for(i=0;str[i]!='\0';++i)
+    {
+        cout<<str[i];
+    }
+    return 0;
+}
