@@ -1,0 +1,88 @@
+// Example program
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool check_reverse(string a,int i,int j)
+{
+  
+    while(i<=j)
+    {
+        if(a[i]!=a[j])
+        {
+            return false;
+        }
+        ++i;
+        --j;
+    }
+    return true;
+}
+void longest_palindrome(string a,int i,int j,int &start,int &end,int &length,vector<vector<int>>dp)
+{
+    
+
+    if(i >= a.length() || j >= a.length() || i >=j ) {
+        return;
+    }
+   
+    if(check_reverse(a,i,j))
+    {
+        
+       
+        if(length < j-i){
+           start=i;
+           end=j;
+           length=j-i;
+        }
+        return;
+    }
+    if(dp[i][j]!=-1)
+    {
+        return;
+    }
+     int k;
+    for(k=i;k<j;++k)
+    {
+        
+       longest_palindrome(a,i,k,start,end,length,dp);
+       dp[i][j]=1;
+       longest_palindrome(a,k+1,j,start,end,length,dp);
+       dp[i][j]=1;
+    }
+    
+        
+    
+    
+}
+
+int main()
+{
+    string a="Geeks";
+    int j=a.length();
+    int start=0;
+    int end=0,len=0;
+    vector<vector<int>>dp(j,vector<int>(j,-1));
+  longest_palindrome(a,0,j-1,start,end,len,dp);
+  int i;
+ 
+  for(i=start;i<=end;++i)
+  {
+      cout<<a[i];
+  }
+}
