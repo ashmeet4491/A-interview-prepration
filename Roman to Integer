@@ -1,0 +1,86 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+int decimal(char a)
+{
+    if(a=='I' || a=='i')
+    {
+        return 1;
+    }
+    if(a=='V' || a=='v')
+    {
+        return 5;
+    }
+     if(a=='X' || a=='x')
+    {
+        return 10;
+    }
+    if(a=='L' || a=='l')
+    {
+        return 50;
+    }
+     if(a=='C' || a=='c')
+    {
+        return 100;
+    }
+     if(a=='D' || a=='d')
+    {
+        return 500;
+    }
+     if(a=='M' || a=='m')
+    {
+        return 1000;
+    }
+    
+    
+}
+int roman_number(string a)
+{
+    int ans=0;
+    int i;
+    if(a.length()>1){
+    for(i=0;i<a.length()-1;++i)
+    {
+        if(decimal(a[i])>=decimal(a[i+1]))
+        {
+            ans=ans+decimal(a[i]);
+          
+            
+        }
+        else
+        {
+            ans=ans-decimal(a[i]);
+        }
+    }
+    ans=ans+decimal(a[i]);
+    }
+    else
+    {
+        ans=ans+decimal(a[0]);
+    }
+    return ans;
+}
+int main()
+{
+  
+  string a;
+  cin>>a;
+  cout<<roman_number(a);
+  
+}
