@@ -1,0 +1,44 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string str="aaabaaa";
+    int start_index1;
+    int end_index1;
+    int start_index2;
+    int end_index2;
+    cin>>start_index1>>end_index1;
+    cin>>start_index2>>end_index2;
+    int diff=end_index2-start_index2;
+    int hash1=0;
+    int hash2=0;
+    int p=1;
+    int mod=1e7+9;
+    int i;
+    for(i=0;i<=diff;++i)
+    {
+        hash1=(hash1+((str[start_index1+i]-'a'+1)*p)%mod)%mod;
+        hash2=(hash2+((str[start_index2+i]-'a'+1)*p)%mod)%mod;
+        p=p*31;
+        
+    }
+    if(hash1==hash2)
+    {
+        cout<<"true";
+    }
+    else
+    {
+        cout<<"false";
+    }
+    
+}
