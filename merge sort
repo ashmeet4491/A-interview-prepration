@@ -1,0 +1,88 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+void merge(int i,int j,int mid,int arr[])
+{
+   int size1=(mid-i)+1;
+   int size2=(j-(mid+1))+1;
+   int m[size1];
+   int n[size2];
+   int index=0;
+   for(index=0;index<size1;++index)
+   {
+       m[index]=arr[i+index];
+   }
+   for(index=0;index<size2;++index)
+   {
+       n[index]=arr[mid+1+index];
+   }
+   int index1=0,index2=0;
+   int count=i;
+   while(index1<size1 && index2<size2)
+   {
+       if(m[index1]<n[index2])
+       {
+           arr[count]=m[index1];
+           ++count;++index1;
+       }
+       else if(m[index1]==n[index2])
+       {
+           arr[count]=m[index1];
+           ++index1;++index2;++count;
+       }
+       else if(m[index]>n[index2])
+       {
+           arr[count]=n[index2];
+           ++index2;++count;
+       }
+   }
+   while(index1<size1)
+   {
+       arr[count]=m[index1];
+       ++count;
+       ++index1;
+   }
+    while(index2<size2)
+   {
+       arr[count]=n[index2];
+       ++count;
+       
+   }
+   for(index1=0;index1<count;++index1)
+   {
+       cout<<arr[index1];
+   }
+   cout<<"\n";
+}
+void merge_sort(int i,int j,int arr[])
+{ int mid;
+mid==(i+j)/2;
+    
+    if(i<j)
+    {
+        mid=(i+j)/2;
+        merge_sort(i,mid,arr);
+        merge_sort(mid+1,j,arr);
+        merge(i,j,mid,arr);    
+        
+        
+    }
+    
+    
+}
+int main()
+{
+  
+    int arr[5]={5,4,3,2,1};
+    int i=0;
+    int j=4;
+    merge_sort(i,j,arr);
+}
