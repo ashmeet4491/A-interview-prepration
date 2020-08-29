@@ -1,0 +1,41 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <bits/stdc++.h>
+using namespace std;
+void dfs(int i,vector<int>adj[],int n,bool visited[])
+{
+    cout<<i<<"\n";
+    visited[i]=true;
+    for(auto it:adj[i])
+    {
+        if(!visited[it])
+        dfs(it,adj,n,visited);
+        
+        
+    }
+    
+}
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    int i;
+    int a,b;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    bool visited[n];
+    i=1;
+    dfs(i,adj,n,visited);
+}
