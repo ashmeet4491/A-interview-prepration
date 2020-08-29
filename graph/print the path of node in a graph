@@ -1,0 +1,46 @@
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+void dfs(int node,int par,vector<int>adj[],int n,vector<int>&path,int given_node)
+{
+    path.push_back(node);
+    if(node==given_node)
+    {
+        int i;
+        for(i=0;i<path.size();++i)
+        {
+            cout<<path[i]<<" ";
+        }
+    }
+    for(auto it:adj[node])
+    {
+        if(it!=par){
+        dfs(it,node,adj,n,path,given_node);
+        path.pop_back();
+        }
+        
+    }
+    
+}
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    int i;
+    int a,b;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+
+    i=1;
+    vector<int>path;
+    int given_node=8;
+    dfs(i,0,adj,n,path,given_node);
+}
