@@ -1,0 +1,80 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+void dfs(int node,int par,vector<int>adj[],int n,map<int,int>&mp)
+{
+  mp[node]=par;
+  for(auto it:adj[node])
+  {
+      if(it!=par){
+      dfs(it,node,adj,n,mp);
+      }
+  }
+    
+    
+}
+
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    int i;
+    int a,b;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    map<int,int>mp;
+     int node;
+     dfs(1,0,adj,n,mp);
+    
+     vector<int>path1;
+     vector<int>path2;
+     
+    cout<<"Enter the node you want the path";
+     cin>>node;
+     
+     cout<<"Enter the node you want the path";
+     while(node!=1)
+    {
+        path1.push_back(node);
+        node=mp[node];
+        
+    }
+    path1.push_back(1);
+     cin>>node;
+       while(node!=1)
+    {
+        path2.push_back(node);
+        node=mp[node];
+        
+    }
+    path2.push_back(1);
+    reverse(path1.begin(),path1.end());
+    reverse(path2.begin(),path2.end());
+    for(i=0;i<path1.size()&&i<path2.size();++i)
+    {
+        if(path1[i]!=path2[i])
+        {
+            break;
+        }
+        
+    }
+    cout<<path1[i-1];
+     
+    
+}
