@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+void dfs(int node,int par,vector<int>adj[],int n,map<int,int>&mp)
+{
+  mp[node]=par;
+  for(auto it:adj[node])
+  {
+      if(it!=par){
+      dfs(it,node,adj,n,mp);
+      }
+  }
+    
+    
+}
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    int i;
+    int a,b;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    map<int,int>mp;
+     int node;
+     dfs(1,0,adj,n,mp);
+    
+     
+    cout<<"Enter the node you want the path";
+     cin>>node;
+    while(node!=1)
+    {
+        cout<<node;
+        node=mp[node];
+        
+    }
+    cout<<"1";
+}
