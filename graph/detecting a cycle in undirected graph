@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool dfs(int node,int par,vector<int>adj[],int n,bool visited[])
+{
+    
+    visited[node]=true;
+    for(auto it:adj[node])
+    {
+        if(!visited[it]){
+        if(dfs(it,node,adj,n,visited))
+        {
+            return true;
+        }
+        }
+        else if(it!=par)
+        {
+          return true;  
+        }
+        
+    }
+    
+}
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    int i;
+    int a,b;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    bool visited[n]={false};
+    
+   cout<<dfs(1,0,adj,n,visited);
+}
