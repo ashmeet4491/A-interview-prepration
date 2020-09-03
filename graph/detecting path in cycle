@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool dfs(int node,vector<int>adj[],int n,bool visited[],bool path[])
+{
+    
+    visited[node]=true;
+    path[node]=true;
+    
+    for(auto it:adj[node])
+    {
+        if(!visited[it])
+        {
+            if(dfs(it,adj,n,visited,path))
+            {
+                return true;
+            }
+             path[node]=false;
+            
+            
+        }
+        else if(path[it])
+        {
+            return true;
+        }
+        
+        
+    }
+    path[node]=false;
+return false;
+    
+}
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    int i;
+    int a,b;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b;
+        adj[a].push_back(b);
+        
+    }
+    bool visited[n]={false};
+    bool path[n]={false};
+    for(i=1;i<=n;++i)
+    {
+        if(!visited[i])
+        {
+           if(dfs(i,adj,n,visited,path))
+           {
+               cout<<"true";
+           }
+           else
+           {
+               cout<<"false";
+           }
+        }
+    }
+   
+        
+    
+}
