@@ -1,0 +1,64 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void dijikstra(vector<pair<int,int>>adj[],vector<int>&dis,int n)
+{
+    dis[1]=0;
+    queue<pair<int,int>>q;
+    q.push({0,1});
+    while(!q.empty())
+    {
+        auto tp=q.front();
+        int fr=tp.first;
+        int sc=tp.second;
+        q.pop();
+        for(auto it:adj[sc])
+        {
+            int node=it.first;
+            int d=it.second;
+            if(fr+d<dis[node])
+            {
+                dis[node]=fr+d;
+               q.push({fr+d,node});
+            }
+            
+        }
+        
+        
+    }
+    int i;
+    for(i=1;i<=n;++i)
+    {
+        cout<<dis[i]<<"\n";
+    }
+    
+}
+int main()
+{
+    int n;
+    int m;
+    cin>>n>>m;
+    vector<pair<int,int>>adj[n+1];
+    int i;
+    int a,b;
+    int d;
+    for(i=0;i<m;++i)
+    {
+        cin>>a>>b>>d;
+        adj[a].push_back({b,d});
+        adj[b].push_back({a,d});
+    }
+    vector<int>dis(n+1,INT_MAX);
+    
+    
+    
+    dijikstra(adj,dis,n);
+}
